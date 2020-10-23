@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Reserva</title>
+</head>
+
+<body>
+	<div class="container mt-4 mb-4" id="app">
+		<h1>{{message}}</h1>
+		<div class="row mt-4">
+			<div class="col-sm-12 col-lg-8">
+				<div class="card">
+					<div class="card-header">
+						<h4>Formulario de Reserva</h4>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-12 col-lg-8">
+								<form th:action="@{/reserva}" method="post">
+									<div class="form-group">
+										<label for="nombre">Nombre Paciente</label> <input type="text"
+											name="nombre" class="form-control">
+									</div>
+									<div class="form-group">
+										<label for="apellido">Apellido Paciente</label> <input
+											type="text" name="apellido" class="form-control">
+									</div>
+									<div class="form-group">
+										<label for="rut">Rut Paciente</label> <input type="text"
+											name="rut" class="form-control">
+									</div>
+									<div class="form-group">
+										<label for="especialidad">Especialidad</label> <select
+											name="especialidad" id="especialidad" class="form-control"
+											v-model="seleccion" @change="obtenerDoctores()">
+											<option v-for="especialidad in especialidades"
+												v-bind:value="especialidad.idEspecialidad">{{especialidad.descripcion}}</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="doctor">Doctor</label> <select name="doctor"
+											id="doctor" class="form-control">
+											<option v-for="doctor in doctores"
+												v-bind:value="doctor.idDoctor">{{doctor.nombre}}</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="fecha">Seleccione Fecha</label> <input type="date"
+											name="fecha" class="form-control">
+									</div>
+									<div class="form-group">
+										<label for="hora">Seleccion Hora</label> <input type="time"
+											name="hora" class="form-control">
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-success">Registrar
+											Reserva</button>
+										<button type="reset" class="btn btn-info">Limpiar
+											Campos</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						<p class="text-right">Sistema Reservas</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="/js/agendas.js"></script>
+</body>
+
+</html>
